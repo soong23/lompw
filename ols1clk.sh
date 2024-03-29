@@ -57,20 +57,7 @@ FORCEYES=0
 WPLANGUAGE=en_US
 WPUSER=wpuser
 WPTITLE=MySite
-
-get_domain() {
-    read -p "请输入您的域名：" SITEDOMAIN
-    echo "您输入的域名是：$SITEDOMAIN"
-    read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N）：" confirm
-    if [[ $confirm != "Y" && $confirm != "y" ]]; then
-        echo "安装已取消"
-        exit 1
-    fi
-    CSR="$SITEDOMAIN.csr"
-    KEY="$SITEDOMAIN.key"
-    CERT="$SITEDOMAIN.crt"
-}
-
+SITEDOMAIN=occultumvpn.com
 EMAIL=
 ADMINUSER='admin'
 ADMINPORT='7080'
@@ -93,11 +80,9 @@ TEMPPASSWORD=
 ACTION=INSTALL
 FOLLOWPARAM=
 CONFFILE=myssl.conf
-CSR=
-KEY=
-CERT=
-
-get_domain
+CSR=occultumvpn.com.csr
+KEY=occultumvpn.com.key
+CERT=occultumvpn.com.crt
 EPACE='        '
 FPACE='    '
 APT='apt-get -qq'
