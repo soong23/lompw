@@ -60,7 +60,8 @@ WPTITLE=MySite
 read -p "请输入您的域名：" SITEDOMAIN
 echo "您输入的域名是：$SITEDOMAIN"
 read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N）：" confirm
-if [[ $confirm != "Y" && $confirm != "y" ]]; then
+confirm=${confirm,,}  # 将用户输入的内容转换为小写字母
+if [[ $confirm != "n" ]]; then
     echo "安装已取消"
     exit 1
 fi
