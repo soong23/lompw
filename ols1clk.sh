@@ -57,13 +57,20 @@ FORCEYES=0
 WPLANGUAGE=en_US
 WPUSER=wpuser
 WPTITLE=MySite
-read -p "请输入您的域名：" SITEDOMAIN
-echo "您输入的域名是：$SITEDOMAIN"
-read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N）：" confirm
-if [[ $confirm != "Y" && $confirm != "y" ]]; then
-    echo "安装已取消"
-    exit 1
-fi
+
+get_domain() {
+    read -p "请输入您的域名：" SITEDOMAIN
+    echo "您输入的域名是：$SITEDOMAIN"
+    read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N）：" confirm
+    if [[ $confirm != "Y" && $confirm != "y" ]]; then
+        echo "安装已取消"
+        exit 1
+    fi
+    CSR="$SITEDOMAIN.csr"
+    KEY="$SITEDOMAIN.key"
+    CERT="$SITEDOMAIN.crt"
+}
+
 EMAIL=
 ADMINUSER='admin'
 ADMINPORT='7080'
@@ -86,14 +93,16 @@ TEMPPASSWORD=
 ACTION=INSTALL
 FOLLOWPARAM=
 CONFFILE=myssl.conf
-CSR=example.csr
-KEY=example.key
-CERT=example.crt
+CSR=
+KEY=
+CERT=
+
+get_domain
 EPACE='        '
 FPACE='    '
 APT='apt-get -qq'
 YUM='yum -q'
-MYGITHUBURL=https://raw.githubusercontent.com/litespeedtech/ols1clk/master/ols1clk.sh
+MYGITHUBURL=https://raw.githubusercontent.com/soong23/lompw/main/ols1clk.sh
 
 function echoY
 {
