@@ -59,10 +59,8 @@ WPUSER=wpuser
 WPTITLE=MySite
 read -p "请输入您的域名：" SITEDOMAIN
 echo "您输入的域名是：$SITEDOMAIN"
-read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N，默认为Y）：" confirm
-confirm=${confirm^^}  # 将用户输入的内容转换为大写字母
-confirm=${confirm:-"Y"}  # 如果用户直接按回车键，则将默认值设置为"Y"
-if [[ $confirm != "N" ]]; then
+read -p "确认使用该域名继续安装吗？（确认请输入Y，取消请输入N）：" confirm
+if [[ $confirm != "Y" && $confirm != "y" ]]; then
     echo "安装已取消"
     exit 1
 fi
